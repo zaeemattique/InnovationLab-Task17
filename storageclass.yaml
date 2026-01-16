@@ -1,0 +1,27 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp3
+  encrypted: "true"
+  fsType: ext4
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+
+# ---
+# # Optional: gp2 StorageClass for backwards compatibility
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: gp2
+# provisioner: ebs.csi.aws.com
+# parameters:
+#   type: gp2
+#   encrypted: "true"
+#   fsType: ext4
+# volumeBindingMode: WaitForFirstConsumer
+# allowVolumeExpansion: true
